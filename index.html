@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimizer AI | The Elite ATS Solution</title>
+    <meta name="description" content="Premium AI-powered resume analyzer with advanced ATS simulation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Premium Backdrop -->
+    <div class="mesh-bg">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
+        <div class="mesh-blob blob-3"></div>
+        <div class="mesh-blob blob-4"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="logo">OPTIMIZER<span style="color: var(--primary);">.</span>AI</a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">Technology</a></li>
+                <li><a href="#checker">Analyzer</a></li>
+                <li><a href="#why-ats-rejects">Pitfalls</a></li>
+                <li><a href="#how-to-improve">Solutions</a></li>
+            </ul>
+            <a href="#checker" class="btn btn-glow" style="padding: 0.6rem 1.4rem; font-size: 0.85rem;">Get Started</a>
+        </div>
+    </nav>
+
+    <header class="hero container">
+        <div class="float-artifact artifact-1"></div>
+        <div class="float-artifact artifact-2"></div>
+        
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="trust-badge reveal">
+                    <div class="trust-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <span class="trust-text">Trusted by 50,000+ Job Seekers</span>
+                </div>
+                
+                <h1 class="reveal">
+                    Crack the <br>
+                    <span style="background: linear-gradient(to right, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ATS Algorithm</span>
+                </h1>
+                
+                <p class="reveal">
+                    Stop sending resumes into the void. Our AI replicates Fortune 500 parsing scanners to benchmark your resume and expose exactly what's blocking your interviews.
+                </p>
+
+                <ul class="hero-checklist reveal">
+                    <li><i class="fas fa-check-circle" style="color: #4ade80;"></i> Deep Keyword Extraction & Gap Analysis</li>
+                    <li><i class="fas fa-check-circle" style="color: #4ade80;"></i> AI readability score and format audits</li>
+                    <li><i class="fas fa-check-circle" style="color: #4ade80;"></i> Instant, actionable bullet point enhancements</li>
+                </ul>
+
+                <div class="hero-actions reveal">
+                    <a href="#checker" class="btn btn-glow" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">Scan My Resume <i class="fas fa-upload" style="margin-left: 0.5rem;"></i></a>
+                    <a href="#example-score" class="btn-secondary">View Demo Analysis</a>
+                </div>
+            </div>
+
+            <div class="hero-visual reveal">
+                <div class="glass-card" style="transform: rotateY(-15deg) rotateX(5deg); padding: 2.5rem; background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent); border-width: 2px; border-top-color: rgba(255,255,255,0.2); border-left-color: rgba(255,255,255,0.2); box-shadow: -20px 20px 60px rgba(0,0,0,0.5);">
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
+                        <div style="position: relative; width: 70px; height: 70px;">
+                            <svg viewBox="0 0 36 36" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                                <path class="circle-bg" stroke="rgba(255,255,255,0.1)" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle-progress" stroke="url(#demoGradient)" stroke-width="3" stroke-dasharray="100, 100" stroke-dashoffset="12" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 800; font-size: 1.3rem;">88</div>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.3rem; margin-bottom: 0.2rem;">Strong Match</h4>
+                            <p style="color: #4ade80; font-size: 0.85rem; font-weight: 600;"><i class="fas fa-arrow-up"></i> Top 10% of Candidates</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem;">Detected Skills</h5>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span style="background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.5); padding: 0.3rem 0.8rem; border-radius: 5px; font-size: 0.8rem; color: #fff;">Python</span>
+                            <span style="background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.5); padding: 0.3rem 0.8rem; border-radius: 5px; font-size: 0.8rem; color: #fff;">React</span>
+                            <span style="background: rgba(236,72,153,0.2); border: 1px solid rgba(236,72,153,0.5); padding: 0.3rem 0.8rem; border-radius: 5px; font-size: 0.8rem; color: #fff;">Agile</span>
+                            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.3rem 0.8rem; border-radius: 5px; font-size: 0.8rem; color: var(--text-muted);">+8</span>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(15,23,42,0.5); padding: 1rem; border-radius: 12px; border-left: 4px solid #22d3ee;">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);"><span style="color: #22d3ee; font-weight: bold;">Quick Fix:</span> Add "GraphQL" to match the JD requirements.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="position: absolute; bottom: -20px; right: -20px; padding: 1rem; background: rgba(15,23,42,0.85); backdrop-filter: blur(20px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 1rem; animation: floatAnim 4s infinite ease-in-out reverse;">
+                    <div style="background: rgba(74,222,128,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #4ade80;">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 0.9rem;">ATS Passed</h5>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Format is 100% readable</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Wave Divider -->
+    <div class="divider divider-bottom">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+
+    <section id="how-it-works" class="container">
+        <div class="section-title reveal" style="text-align: center; margin-bottom: 5rem;">
+            <h6 style="color: var(--primary); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 1rem;">Process</h6>
+            <h2 style="font-size: 3rem; font-weight: 800;">Modern Parsing Engine</h2>
+        </div>
+        <div class="grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;">
+            <div class="glass-card reveal">
+                <div style="width: 50px; height: 50px; background: rgba(99, 102, 241, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-microchip" style="color: var(--primary); font-size: 1.5rem;"></i>
+                </div>
+                <h3>Neural Extraction</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">We don't just read text; we understand project hierarchy and semantic meaning in your experience.</p>
+            </div>
+            <div class="glass-card reveal">
+                <div style="width: 50px; height: 50px; background: rgba(236, 72, 153, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-project-diagram" style="color: var(--tertiary); font-size: 1.5rem;"></i>
+                </div>
+                <h3>JD Correlation</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Direct cross-referencing with live job market data to ensure you meet high-demand skill benchmarks.</p>
+            </div>
+            <div class="glass-card reveal">
+                <div style="width: 50px; height: 50px; background: rgba(34, 211, 238, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-rocket" style="color: var(--accent-cyan); font-size: 1.5rem;"></i>
+                </div>
+                <h3>Path Optimization</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Receive precise edits that bridge the gap between your current resume and an 'Auto-Accept' status.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slant Divider -->
+    <div class="divider divider-top">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M1200 120L0 16.48V0h1200v120z" class="shape-fill"></path>
+        </svg>
+    </div>
+
+    <section id="checker" style="background: rgba(15, 23, 42, 0.2);">
+        <div class="container">
+            <div class="section-title reveal" style="text-align: center; margin-bottom: 5rem;">
+                <h2 style="font-size: 3.5rem; font-weight: 800;">Real-time Analyzer</h2>
+                <p style="color: var(--text-muted); margin-top: 1rem;">The bridge between your experience and your next salary bump.</p>
+            </div>
+            
+            <div class="glass-card reveal" style="max-width: 900px; margin: 0 auto; backdrop-filter: blur(40px);">
+                <form id="analyze-form">
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 2.5rem;">
+                        <div class="form-group">
+                            <label style="font-weight: 600; color: #fff; margin-bottom: 1rem; display: block;">Step 1: Upload Intelligence</label>
+                            <div class="drop-zone-premium" id="drop-zone">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 2.5rem; color: var(--primary);"></i>
+                                <span id="file-info" style="color: var(--text-muted);">Drop PDF or DOCX here</span>
+                                <input type="file" id="resume-input" accept=".pdf,.doc,.docx" hidden>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="font-weight: 600; color: #fff; margin-bottom: 1rem; display: block;">Step 2: Define Requirements</label>
+                            <textarea id="job-description" class="premium-area" placeholder="Paste the target job description..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-glow" id="analyze-btn" style="width: 100%; padding: 1.5rem; font-size: 1.1rem;">
+                            <span id="btn-content" style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+                                Run Deep Analysis
+                                <div id="loader" style="width: 25px; height: 25px; border: 3px solid #FFF; border-bottom-color: transparent; border-radius: 50%; display: none; animation: rotation 1s linear infinite;"></div>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <div id="results-section" style="display: none; margin-top: 4rem; animation: revealUp 0.8s forwards;">
+                    <div class="score-svg-container">
+                        <svg width="200" height="200" viewBox="0 0 200 200">
+                            <defs>
+                                <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#6366f1" />
+                                    <stop offset="100%" stop-color="#ec4899" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="circle-bg" cx="100" cy="100" r="90" />
+                            <circle id="score-circle-path" class="circle-progress" cx="100" cy="100" r="90" />
+                        </svg>
+                        <div class="score-text-center">
+                            <span class="score-num" id="score-val">0</span>
+                            <span class="score-label">MATCH</span>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div class="glass-card" style="padding: 2rem; background: rgba(74, 222, 128, 0.05); border-color: rgba(74, 222, 128, 0.1);">
+                            <h4 style="color: #4ade80; margin-bottom: 1.5rem;"><i class="fas fa-check-double"></i> Detected Assets</h4>
+                            <div id="matching-skills" style="display: flex; flex-wrap: wrap; gap: 0.8rem;"></div>
+                        </div>
+                        <div class="glass-card" style="padding: 2rem; background: rgba(248, 113, 113, 0.05); border-color: rgba(248, 113, 113, 0.1);">
+                            <h4 style="color: #f87171; margin-bottom: 1.5rem;"><i class="fas fa-exclamation-triangle"></i> Vulnerabilities</h4>
+                            <div id="missing-skills" style="display: flex; flex-wrap: wrap; gap: 0.8rem;"></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card" style="margin-top: 2rem; padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem;"><i class="fas fa-lightbulb" style="color: var(--accent-cyan);"></i> Strategic Improvements</h4>
+                        <ul id="suggestions-list" style="list-style: none;"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slant Divider -->
+    <div class="divider divider-bottom" style="transform: rotate(180deg) scaleX(-1);">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M1200 120L0 16.48V0h1200v120z" class="shape-fill"></path>
+        </svg>
+    </div>
+
+    <!-- SECTION 1: Why ATS Rejects Resumes -->
+    <section id="why-ats-rejects" class="container">
+        <div class="section-title reveal" style="text-align: center; margin-bottom: 5rem;">
+            <h6 style="color: #f87171; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 1rem;">Pitfalls</h6>
+            <h2 style="font-size: 3rem; font-weight: 800;">Why ATS Rejects Resumes</h2>
+        </div>
+        <div class="grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;">
+            <div class="glass-card reveal" style="border-top: 4px solid #f87171;">
+                <div style="width: 50px; height: 50px; background: rgba(248, 113, 113, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-key" style="color: #f87171; font-size: 1.5rem;"></i>
+                </div>
+                <h3>Missing Keywords</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">If the system searches for "React" and you only list "Frontend Development", you will likely be skipped.</p>
+            </div>
+            <div class="glass-card reveal" style="border-top: 4px solid #f87171;">
+                <div style="width: 50px; height: 50px; background: rgba(248, 113, 113, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-align-left" style="color: #f87171; font-size: 1.5rem;"></i>
+                </div>
+                <h3>Bad Formatting</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Complex layouts, multi-columns, and heavy graphics can completely break older ATS parsing systems.</p>
+            </div>
+            <div class="glass-card reveal" style="border-top: 4px solid #f87171;">
+                <div style="width: 50px; height: 50px; background: rgba(248, 113, 113, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-chart-bar" style="color: #f87171; font-size: 1.5rem;"></i>
+                </div>
+                <h3>No Measurable Impact</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Listing basic responsibilities instead of quantifiable achievements lowers your candidate ranking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: How ATS Judges Your Resume -->
+    <section id="how-its-judged" class="container">
+        <div class="section-title reveal" style="text-align: center; margin-bottom: 5rem;">
+             <h6 style="color: var(--secondary); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 1rem;">Algorithm</h6>
+            <h2 style="font-size: 3rem; font-weight: 800;">How ATS Judges Your Resume</h2>
+        </div>
+        <div class="grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;">
+            <div class="glass-card reveal">
+                <div style="width: 50px; height: 50px; background: rgba(168, 85, 247, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-check-square" style="color: var(--secondary); font-size: 1.5rem;"></i>
+                </div>
+                <h3>Keyword Matching</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Scanners look for exact and related phrasing matches between your document and the targeted job responsibilities.</p>
+            </div>
+            <div class="glass-card reveal">
+                <div style="width: 50px; height: 50px; background: rgba(168, 85, 247, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-briefcase" style="color: var(--secondary); font-size: 1.5rem;"></i>
+                </div>
+                <h3>Experience Relevance</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Total years of experience are calculated by reading job dates and measuring them against the required seniority.</p>
+            </div>
+            <div class="glass-card reveal">
+                <div style="width: 50px; height: 50px; background: rgba(168, 85, 247, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <i class="fas fa-bullseye" style="color: var(--secondary); font-size: 1.5rem;"></i>
+                </div>
+                <h3>Skill Density</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Calculated by how frequently the required hard skills appear relative to the total overall length of your resume.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Divider -->
+    <div class="divider divider-top">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+
+    <!-- SECTION 3: How To Improve Your Resume -->
+    <section id="how-to-improve" style="background: rgba(15, 23, 42, 0.2);">
+        <div class="container">
+            <div class="section-title reveal" style="text-align: center; margin-bottom: 5rem;">
+                 <h6 style="color: #4ade80; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 1rem;">Solutions</h6>
+                <h2 style="font-size: 3rem; font-weight: 800;">How To Improve Your Resume</h2>
+            </div>
+            <div class="grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;">
+                <div class="glass-card reveal" style="border-top: 4px solid #4ade80;">
+                    <div style="width: 50px; height: 50px; background: rgba(74, 222, 128, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                        <i class="fas fa-spell-check" style="color: #4ade80; font-size: 1.5rem;"></i>
+                    </div>
+                    <h3>Add Job Description Keywords</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Mirror the exact job description keywords. Organically integrate them into your summary and experience bullet points.</p>
+                </div>
+                <div class="glass-card reveal" style="border-top: 4px solid #4ade80;">
+                    <div style="width: 50px; height: 50px; background: rgba(74, 222, 128, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                        <i class="fas fa-file-alt" style="color: #4ade80; font-size: 1.5rem;"></i>
+                    </div>
+                    <h3>Use ATS Friendly Format</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Stick to a single-column layout. Use standard fonts, remove complicated tables, and use recognizable section headers.</p>
+                </div>
+                <div class="glass-card reveal" style="border-top: 4px solid #4ade80;">
+                    <div style="width: 50px; height: 50px; background: rgba(74, 222, 128, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                        <i class="fas fa-trophy" style="color: #4ade80; font-size: 1.5rem;"></i>
+                    </div>
+                    <h3>Add Projects & Metrics</h3>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">Always showcase the results of your work. Incorporate numbers and data metrics to explicitly prove your competence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Example ATS Score -->
+    <section id="example-score" class="container">
+        <div class="section-title reveal" style="text-align: center; margin-bottom: 5rem;">
+            <h6 style="color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 1rem;">Demo</h6>
+            <h2 style="font-size: 3rem; font-weight: 800;">Example ATS Score</h2>
+            <p style="color: var(--text-muted); margin-top: 1rem;">Here is the type of deep breakdown you can expect from our system.</p>
+        </div>
+        
+        <div class="glass-card reveal" style="max-width: 900px; margin: 0 auto; backdrop-filter: blur(40px);">
+             <div class="score-svg-container" style="margin-bottom: 0;">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="demoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#6366f1" />
+                            <stop offset="100%" stop-color="#ec4899" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="circle-bg" cx="100" cy="100" r="90" />
+                    <!-- stroke-dashoffset = 565.48 - (0.85 * 565.48) = 84.822 -->
+                    <circle class="circle-progress" cx="100" cy="100" r="90" style="stroke: url(#demoGradient); stroke-dashoffset: 84.822;" />
+                </svg>
+                <div class="score-text-center">
+                    <span class="score-num" style="font-size: 4rem; font-weight: 800; color: #fff; line-height: 1;">85</span>
+                    <span class="score-label" style="font-size: 0.8rem; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; display: block; margin-top: 0.2rem;">MATCH</span>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem;">
+                <div class="glass-card" style="padding: 2rem; background: rgba(74, 222, 128, 0.05); border-color: rgba(74, 222, 128, 0.1);">
+                    <h4 style="color: #4ade80; margin-bottom: 1.5rem;"><i class="fas fa-check-double"></i> Detected Assets</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                        <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 50px; font-size: 0.8rem; font-weight: 500;">JavaScript</span>
+                        <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 50px; font-size: 0.8rem; font-weight: 500;">React</span>
+                        <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 50px; font-size: 0.8rem; font-weight: 500;">Node.js</span>
+                        <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 50px; font-size: 0.8rem; font-weight: 500;">Agile Methodologies</span>
+                    </div>
+                </div>
+                <div class="glass-card" style="padding: 2rem; background: rgba(248, 113, 113, 0.05); border-color: rgba(248, 113, 113, 0.1);">
+                    <h4 style="color: #f87171; margin-bottom: 1.5rem;"><i class="fas fa-exclamation-triangle"></i> Vulnerabilities</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                        <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 50px; font-size: 0.8rem; font-weight: 500;">AWS</span>
+                        <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 50px; font-size: 0.8rem; font-weight: 500;">GraphQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card" style="margin-top: 2rem; padding: 2rem;">
+                <h4 style="margin-bottom: 1.5rem;"><i class="fas fa-lightbulb" style="color: var(--accent-cyan);"></i> Strategic Improvements</h4>
+                <ul style="list-style: none;">
+                    <li style="padding: 1rem 0; color: var(--text-muted); display: flex; gap: 1rem; border-bottom: 1px solid var(--glass-border); font-size: 0.95rem;">
+                        <span style="color: var(--accent-cyan); font-weight: 800;">❱</span> The job description frequently mentions "AWS deployments". Add a project showcasing your cloud experience.
+                    </li>
+                    <li style="padding: 1rem 0; color: var(--text-muted); display: flex; gap: 1rem; border-bottom: 1px solid var(--glass-border); font-size: 0.95rem;">
+                        <span style="color: var(--accent-cyan); font-weight: 800;">❱</span> Standardize your formatting. Ensure your bullet points are consistently active and past-tense.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h4 class="logo">OPTIMIZER<span style="color: var(--primary);">.</span>AI</h4>
+                    <p>The elite platform for data-driven job seekers. Use AI to bridge the gap between human experience and digital screening.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <ul>
+                        <li><a href="#">Analysis Engine</a></li>
+                        <li><a href="#">SaaS Dashboard</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">ATS Dictionary</a></li>
+                        <li><a href="#">Resume Library</a></li>
+                        <li><a href="#">AI Best Practices</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter/X</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+                &copy; 2026 OPTIMIZER.AI. High Performance Career Growth.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
