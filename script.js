@@ -51,77 +51,127 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('analyze-form');
     const analyzeBtn = document.getElementById('analyze-btn');
     const loader = document.getElementById('loader');
-    const resultsSection = document.getElementById('results-section');
 
-    const scoreVal = document.getElementById('score-val');
-    const scoreCircle = document.getElementById('score-circle-path');
-    const matchingSkillsContainer = document.getElementById('matching-skills');
-    const missingSkillsContainer = document.getElementById('missing-skills');
-    const suggestionsList = document.getElementById('suggestions-list');
+    if (dropZone && resumeInput) {
+        dropZone.addEventListener('click', () => resumeInput.click());
 
-    // Circumference of circle (r=90) -> 2 * PI * 90 = 565.48
-    const CIRCUMFERENCE = 565.48;
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = 'var(--primary)';
+        });
 
-    dropZone.addEventListener('click', () => resumeInput.click());
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        });
 
-    resumeInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) updateFileInfo(file);
-    });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            if (e.dataTransfer.files.length) {
+                const file = e.dataTransfer.files[0];
+                const dt = new DataTransfer();
+                dt.items.add(file);
+                resumeInput.files = dt.files;
+                updateFileInfo(file);
+            }
+        });
 
-    function updateFileInfo(file) {
-        fileInfo.innerHTML = `<span style="color: var(--primary); font-weight: 700;">${file.name}</span> detected. Ready.`;
+        resumeInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                updateFileInfo(e.target.files[0]);
+            }
+        });
     }
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    function updateFileInfo(file) {
+        if (!fileInfo) return;
+        const isPDF = file.type === "application/pdf" || file.name.toLowerCase().endsWith('.pdf');
+        const isDOCX = file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || file.name.toLowerCase().endsWith('.docx');
         
-        const file = resumeInput.files[0];
-        const jobDesc = document.getElementById('job-description').value;
-
-        if (!file) {
-            alert('Mission Critical: Please upload your resume first.');
-            return;
+        if (!isPDF && !isDOCX) {
+            fileInfo.innerHTML = `<span style="color: #f87171;">Error: Please upload a strictly PDF or DOCX format document.</span>`;
+            resumeInput.value = ""; // clear
+        } else {
+            fileInfo.innerHTML = `<span style="color: var(--primary); font-weight: 700;">${file.name}</span> detected. Ready.`;
         }
+    }
 
-        setLoading(true);
-        resultsSection.style.display = 'none';
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const file = resumeInput.files[0];
+            const jobDesc = document.getElementById('job-description').value.trim();
 
-        try {
-            const formData = new FormData();
-            formData.append('resume', file);
-            formData.append('job_description', jobDesc);
+            if (!file) {
+                alert('Mission Critical: Please select a PDF resume file.');
+                return;
+            }
 
-            const response = await fetch('https://YOUR-N8N-WEBHOOK', {
-                method: 'POST',
-                body: formData
-            });
+            const isPDF = file.type === "application/pdf" || file.name.toLowerCase().endsWith('.pdf');
+            const isDOCX = file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || file.name.toLowerCase().endsWith('.docx');
 
-            if (!response.ok) throw new Error('System error.');
+            if (!isPDF && !isDOCX) {
+                alert('Mission Critical: Resume must be a valid PDF or DOCX format.');
+                return;
+            }
 
-            const data = await response.json();
-            renderResults(data);
+            if (!jobDesc) {
+                alert('Mission Critical: Please paste the target job description.');
+                return;
+            }
 
-        } catch (error) {
-            console.error('Simulating response for premium demo...');
-            setTimeout(() => {
-                const mockData = {
-                    score: 92,
-                    matching_skills: ['Senior Leadership', 'AI/ML Systems', 'Stakeholder Management', 'System Architecture'],
-                    missing_skills: ['Advanced Cloud Cost Opt.', 'Distributed Ledger Tech'],
-                    suggestions: [
-                        'Your technical depth is excellent; consider leading with your architecture achievements.',
-                        'The JD emphasizes budgeting; add a metric regarding P&L management.',
-                        'Standardize your date format to (YYYY) for 100% parsing accuracy across legacy systems.'
-                    ]
+            setLoading(true);
+
+            try {
+                const reader = new FileReader();
+                reader.onload = async (event) => {
+                    try {
+                        const base64String = event.target.result.split(',')[1];
+                        
+                        const response = await fetch('/api/analyze', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                resume_base64: base64String,
+                                resume_filename: file.name,
+                                job_description: jobDesc
+                            })
+                        });
+
+                        if (!response.ok) {
+                            const err = await response.text();
+                            throw new Error(err);
+                        }
+
+                        const data = await response.json();
+                        
+                        // MULTI-PAGE FLOW: Save and redirect
+                        localStorage.setItem('atsAnalysis', JSON.stringify(data));
+                        window.location.href = 'results.html';
+
+                    } catch (error) {
+                        console.error('System error:', error);
+                        alert('Analysis failed: ' + error.message);
+                        setLoading(false);
+                    }
                 };
-                renderResults(mockData);
+                reader.onerror = () => {
+                    alert('Error reading the file natively.');
+                    setLoading(false);
+                };
+                reader.readAsDataURL(file);
+
+            } catch (error) {
+                console.error('System error:', error);
+                alert('Analysis failed: ' + error.message);
                 setLoading(false);
-            }, 2500);
-        }
-    });
+            }
+        });
+    }
 
     function setLoading(isLoading) {
+        if (!analyzeBtn) return;
         const btnContent = document.getElementById('btn-content');
         if (isLoading) {
             analyzeBtn.disabled = true;
@@ -132,54 +182,5 @@ document.addEventListener('DOMContentLoaded', () => {
             loader.style.display = 'none';
             btnContent.firstChild.textContent = 'Run Deep Analysis';
         }
-    }
-
-    function renderResults(data) {
-        setLoading(false);
-        resultsSection.style.display = 'block';
-        
-        // 5. ANIMATE SCORE & SVG CIRCLE
-        animateValue(scoreVal, 0, data.score, 1500);
-        
-        // SVG Offset Calculation
-        const offset = CIRCUMFERENCE - (data.score / 100) * CIRCUMFERENCE;
-        scoreCircle.style.strokeDashoffset = offset;
-
-        // Render Lists
-        renderTags(matchingSkillsContainer, data.matching_skills, 'asset-tag');
-        renderTags(missingSkillsContainer, data.missing_skills, 'vulnerability-tag');
-        
-        suggestionsList.innerHTML = '';
-        data.suggestions.forEach(suggestion => {
-            const li = document.createElement('li');
-            li.style.cssText = 'padding: 1rem 0; color: var(--text-muted); display: flex; gap: 1rem; border-bottom: 1px solid var(--glass-border); font-size: 0.95rem;';
-            li.innerHTML = `<span style="color: var(--accent-cyan); font-weight: 800;">❱</span> ${suggestion}`;
-            suggestionsList.appendChild(li);
-        });
-
-        resultsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function renderTags(container, tags, typeClass) {
-        container.innerHTML = '';
-        tags.forEach(tag => {
-            const span = document.createElement('span');
-            span.style.cssText = 'padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 50px; font-size: 0.8rem; font-weight: 500;';
-            span.textContent = tag;
-            container.appendChild(span);
-        });
-    }
-
-    function animateValue(obj, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            obj.innerHTML = Math.floor(progress * (end - start) + start);
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
     }
 });
