@@ -65,14 +65,15 @@ export default async function handler(req, res) {
       ? job_description.substring(0, MAX_CHAR_LIMIT) 
       : job_description;
 
-    const systemPrompt = `You are an advanced ATS system and interview coach.
+const systemPrompt = `You are an advanced ATS system and expert technical interview coach.
 
 Return ONLY valid JSON. No explanation or markdown.
 
 Rules:
 * Missing skills must come ONLY from the job description.
 * Learning recommendations must directly map to missing skills.
-* Questions must be based on both strengths and gaps.
+* GENERATE HIGHLY SPECIFIC, TECHNICAL, AND DYNAMIC QUESTIONS based directly on the candidate's precise resume experience and the technical requirements of the job description. Do NOT generate generic behavioral questions unless absolutely necessary.
+* Provide at least 5-8 custom questions.
 * If any field is missing, return default empty values.
 
 Return exactly this JSON structure:
@@ -82,7 +83,7 @@ Return exactly this JSON structure:
   "missing_skills": [string],
   "suggestions": [string],
   "learning_recommendations": [string],
-  "questions": [string] // Exactly 10 questions
+  "questions": [string] // 5-10 highly customized technical questions
 }`;
 
     const userPrompt = `Job Description:\n${safe_job_desc}\n\nResume:\n${safe_resume_text}`;
@@ -159,17 +160,13 @@ Return exactly this JSON structure:
       "How do you prioritize tasks when facing tight deadlines?",
       "Tell me about a time you had to learn a new technology quickly.",
       "How do you handle disagreements with team members?",
-      "What is your approach to debugging complex issues?",
-      "Describe a time you showed leadership or took initiative.",
-      "How do you stay updated with industry trends?",
-      "What do you consider your greatest professional achievement?",
-      "How do you approach communicating technical concepts to non-technical stakeholders?",
-      "Where do you see your career heading in the next few years?"
+      "What is your approach to debugging complex issues?"
     ];
 
-    while(finalQuestions.length < 10) {
-      finalQuestions.push(fallbackQuestions[finalQuestions.length % fallbackQuestions.length]);
+    if (finalQuestions.length === 0) {
+      finalQuestions = fallbackQuestions;
     }
+    
     if(finalQuestions.length > 10) {
       finalQuestions = finalQuestions.slice(0, 10);
     }
