@@ -93,7 +93,94 @@ document.addEventListener('DOMContentLoaded', () => {
         const controlsRow = document.createElement('div');
         controlsRow.style.display = 'flex';
         controlsRow.style.justifyContent = 'flex-end';
+        controlsRow.style.gap = '1rem';
         
+        const micBtn = document.createElement('button');
+        micBtn.style.cssText = `
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        `;
+        micBtn.innerHTML = '<i class="fas fa-microphone"></i> <span>Dictate Answer</span>';
+        
+        let isRecording = false;
+        let recognition = null;
+        
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            
+            let originalValue = '';
+
+            const stopRecording = () => {
+                isRecording = false;
+                recognition.stop();
+                micBtn.innerHTML = '<i class="fas fa-microphone"></i> <span>Dictate Answer</span>';
+                micBtn.style.borderColor = 'var(--glass-border)';
+                micBtn.style.background = 'rgba(255, 255, 255, 0.05)';
+            };
+
+            recognition.onstart = () => {
+                isRecording = true;
+                originalValue = answerArea.value; 
+                micBtn.innerHTML = '<i class="fas fa-stop" style="color: #ef4444;"></i> <span style="color: #ef4444;">Recording...</span>';
+                micBtn.style.borderColor = '#ef4444';
+                micBtn.style.background = 'rgba(239, 68, 68, 0.1)';
+            };
+
+            recognition.onresult = (event) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                    }
+                }
+                
+                const space = (originalValue && !originalValue.endsWith(' ') && (finalTranscript || interimTranscript)) ? ' ' : '';
+                const newText = originalValue + space + finalTranscript;
+                const interimSpace = (newText && !newText.endsWith(' ') && interimTranscript) ? ' ' : '';
+                
+                answerArea.value = newText + interimSpace + interimTranscript;
+                
+                if (finalTranscript) {
+                    originalValue = newText;
+                }
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error", event.error);
+                stopRecording();
+            };
+
+            recognition.onend = () => {
+                if(isRecording) stopRecording();
+            };
+
+            micBtn.onclick = () => {
+                if (isRecording) {
+                    stopRecording();
+                } else {
+                    recognition.start();
+                }
+            };
+        } else {
+            micBtn.style.display = 'none';
+        }
+
         const submitBtn = document.createElement('button');
         submitBtn.className = 'btn btn-glow';
         submitBtn.style.padding = '0.6rem 1.5rem';
@@ -114,6 +201,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         submitBtn.onclick = async () => {
+            if (isRecording && recognition) {
+                isRecording = false;
+                recognition.stop();
+            }
+
             const answer = answerArea.value.trim();
             if (!answer) {
                 alert('Please provide an answer first.');
@@ -123,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.textContent = 'Evaluating...';
             submitBtn.disabled = true;
             submitBtn.style.opacity = '0.7';
+            micBtn.style.display = 'none';
 
             try {
                 const res = await fetch('/api/evaluate', {
@@ -163,9 +256,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.textContent = 'Submit Answer';
                 submitBtn.disabled = false;
                 submitBtn.style.opacity = '1';
+                micBtn.style.display = 'flex';
             }
         };
 
+        controlsRow.appendChild(micBtn);
         controlsRow.appendChild(submitBtn);
 
         item.appendChild(questionRow);
