@@ -70,6 +70,8 @@ const systemPrompt = `You are an advanced ATS system and expert technical interv
 Return ONLY valid JSON. No explanation or markdown.
 
 Rules:
+* Strictly evaluate the resume against the job description to calculate a realistic score between 0 and 100.
+* Be highly critical. Do NOT default to generic scores like 80 or 85. Deduct points proportionally for missing skills, lack of relevant experience, or weak descriptions. Use the full range of scores (e.g., 35, 52, 78, 91).
 * Missing skills must come ONLY from the job description.
 * Learning recommendations must directly map to missing skills.
 * GENERATE HIGHLY SPECIFIC, TECHNICAL, AND DYNAMIC QUESTIONS based directly on the candidate's precise resume experience and the technical requirements of the job description. Do NOT generate generic behavioral questions unless absolutely necessary.
@@ -78,7 +80,7 @@ Rules:
 
 Return exactly this JSON structure:
 {
-  "score": number, // 0-100 rating
+  "score": number, // 0-100 rating (must be precise and dynamic based on actual match)
   "matching_skills": [string],
   "missing_skills": [string],
   "suggestions": [string],
@@ -140,12 +142,28 @@ Return exactly this JSON structure:
     
     const deduplicate = arr => Array.isArray(arr) ? [...new Set(arr)] : [];
 
-    let finalScore = typeof parsedData.score === 'number' ? parsedData.score : 0;
-    finalScore = Math.min(Math.max(finalScore, 0), 100);
-
     const finalMatchingSkills = deduplicate(parsedData.matching_skills);
     const finalMissingSkills = deduplicate(parsedData.missing_skills);
     const finalLearningRecs = deduplicate(parsedData.learning_recommendations);
+
+    // Dynamic Formula-based Scoring
+    let aiScore = typeof parsedData.score === 'number' ? parsedData.score : 50;
+    let calculatedScore = aiScore;
+    
+    const matchCount = finalMatchingSkills.length;
+    const missingCount = finalMissingSkills.length;
+    const totalSkills = matchCount + missingCount;
+
+    if (totalSkills > 0) {
+      // Calculate strict skill match percentage (0-100)
+      const skillMatchPercentage = (matchCount / totalSkills) * 100;
+      
+      // Blend the exact formula score (80% weight) with the AI's holistic score (20% weight)
+      // This ensures the score fluctuates dynamically based on actual skill extraction
+      calculatedScore = Math.round((skillMatchPercentage * 0.8) + (aiScore * 0.2));
+    }
+
+    let finalScore = Math.min(Math.max(calculatedScore, 0), 100);
 
     let finalSuggestions = Array.isArray(parsedData.suggestions) 
       ? parsedData.suggestions.filter(item => typeof item === 'string')
