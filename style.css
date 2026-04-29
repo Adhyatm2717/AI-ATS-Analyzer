@@ -131,35 +131,6 @@ section {
   padding: 120px 0;
 }
 
-/* --- SECTION DIVIDERS --- */
-.divider {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  overflow: hidden;
-  line-height: 0;
-  z-index: 1;
-}
-
-.divider-top {
-  top: -1px;
-  transform: rotate(180deg);
-}
-
-.divider-bottom {
-  bottom: -1px;
-}
-
-.divider svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.divider .shape-fill {
-  fill: var(--bg-deep);
-}
 
 /* --- NAVIGATION --- */
 nav {
